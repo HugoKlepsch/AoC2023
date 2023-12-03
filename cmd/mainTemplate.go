@@ -8,13 +8,8 @@ import (
 
 func main() {
 
-	readFile, err := os.Open("input")
-	if err != nil {
-		fmt.Println(err)
-		panic(err)
-	}
-	defer readFile.Close()
-	fileScanner := bufio.NewScanner(readFile)
+	var err error
+	fileScanner := bufio.NewScanner(os.Stdin)
 	fileScanner.Split(bufio.ScanLines)
 
 	for fileScanner.Scan() {
