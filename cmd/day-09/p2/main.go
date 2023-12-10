@@ -8,6 +8,24 @@ import (
 	"strings"
 )
 
+func intListToString(in []int) string {
+	strs := []string{}
+	for _, e := range in {
+		strs = append(strs, fmt.Sprintf("%d", e))
+	}
+	return fmt.Sprintf("[%s]", strings.Join(strs, ","))
+}
+
+func reverse(in []int) {
+	length := len(in)
+	for i := 0; i < length/2; i++ {
+		tmp := in[i]
+		other := length - i - 1
+		in[i] = in[other]
+		in[other] = tmp
+	}
+}
+
 func recursiveDerivativeNext(in []int) int {
 	allZero := true
 	for i := 0; i < len(in)-1; i++ {
@@ -46,6 +64,7 @@ func main() {
 			}
 			nums = append(nums, int(val))
 		}
+		reverse(nums)
 		next := recursiveDerivativeNext(nums)
 		fmt.Printf("next: %s %d\n", line, next)
 		score += next
